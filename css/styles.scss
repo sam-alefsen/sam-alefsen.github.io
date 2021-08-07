@@ -74,6 +74,7 @@ header {
     font-family: $source-code-pro;
     font-weight:300;
     padding: 5vh 6vw;
+    text-shadow: -1px 2px 4px $xiketic;
   }
   .headshot {
     height: clamp(0px, 90vh, 90vw);

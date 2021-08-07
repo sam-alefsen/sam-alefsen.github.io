@@ -65,6 +65,7 @@ header h1 {
   font-family: "Source Code Pro";
   font-weight: 300;
   padding: 5vh 6vw;
+  text-shadow: -1px 2px 4px HSL(275, 100%, 3%);
 }
 header .headshot {
   height: clamp(0px, 90vh, 90vw);
