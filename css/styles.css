@@ -1,22 +1,39 @@
 @charset "UTF-8";
 @font-face {
-  font-family: "Source Code Pro";
+  font-family: 'Hahmlet';
+  src: url("../assets/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
   src: url("../assets/fonts/SourceCodePro_FontsOnly-1.009/SourceCodePro-Regular.ttf");
   font-weight: 400;
 }
+
 @font-face {
-  font-family: "Source Code Pro";
+  font-family: 'Source Code Pro';
   src: url("../assets/fonts/SourceCodePro_FontsOnly-1.009/SourceCodePro-Semibold.ttf");
   font-weight: 600;
 }
+
 @font-face {
-  font-family: "Source Code Pro";
+  font-family: 'Source Code Pro';
   src: url("../assets/fonts/SourceCodePro_FontsOnly-1.009/SourceCodePro-Light.ttf");
   font-weight: 300;
 }
+
 html {
   overflow-x: hidden;
   overscroll-behavior: none;
+  -ms-overflow-style: none;
+  /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none;
+  /* Hide scrollbar in Firefox */
+}
+
+html::-webkit-scrollbar {
+  /* Hide scrollbar in Chrome, Safari and Opera */
+  display: none;
 }
 
 body {
@@ -24,10 +41,20 @@ body {
 }
 
 h2 {
-  font-family: "Source Code Pro";
+  font-family: "Source Code Pro", monospace;
   font-size: 4rem;
   font-weight: 400;
-  line-height: 8rem;
+  line-height: 5rem;
+  margin: 2.5rem auto;
+  text-align: center;
+}
+
+h3 {
+  font-family: "Source Code Pro", monospace;
+  font-size: clamp(0px, 3rem, 6.2vw);
+  font-weight: 400;
+  line-height: clamp(0px, 4.5rem, 8.5vw);
+  margin: 2.5rem;
   text-align: center;
 }
 
@@ -42,6 +69,7 @@ hr {
   padding: 0;
   text-align: center;
 }
+
 hr:after {
   background-color: inherit;
   content: "§";
@@ -53,20 +81,41 @@ hr:after {
 }
 
 p {
-  font-size: 1.2rem;
+  font-family: Hahmlet, Garamond, serif;
+  font-size: 1.1rem;
   line-height: 1.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Hahmlet, Garamond, serif;
+  font-size: 1.3rem;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button.blue {
+  background-color: HSL(203, 100%, 16%);
+  color: HSL(48, 88%, 98%);
+}
+
+.button:hover {
+  background-color: HSL(203, 100%, 20%);
 }
 
 header h1 {
-  background: HSL(275, 100%, 3%) 0.5;
   color: HSL(48, 88%, 98%);
   font-size: clamp(0px, 29vh, 29vw);
-  font-family: "Source Code Pro";
+  font-family: "Source Code Pro", monospace;
   font-weight: 300;
   padding: 5vh 6vw;
-  text-shadow: -1px 2px 4px HSL(275, 100%, 3%);
+  text-shadow: -1px 2px 6px HSLA(275, 100%, 3%, 0.8);
 }
+
 header .headshot {
   height: clamp(0px, 90vh, 90vw);
   right: 0;
@@ -77,9 +126,17 @@ header .headshot {
   z-index: -1;
 }
 
+.container {
+  background-color: inherit;
+  margin: 0 auto;
+  padding: 6vh 6vw;
+  width: 70%;
+}
+
 .about {
   background-color: HSL(203, 100%, 16%);
-  box-shadow: 0px -1px 6px HSLA(0, 0%, 0%, 0.8);
+  -webkit-box-shadow: 0px -1px 6px HSLA(275, 100%, 3%, 0.8);
+          box-shadow: 0px -1px 6px HSLA(275, 100%, 3%, 0.8);
   color: HSL(48, 88%, 98%);
 }
 
@@ -88,11 +145,97 @@ header .headshot {
   color: HSL(275, 100%, 3%);
 }
 
-.container {
-  background-color: inherit;
-  margin: 0 auto;
-  padding: 6vh 6vw;
-  width: 70%;
+.grid {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 10px;
+  -ms-grid-columns: (calc(100% / 3))[3];
+      grid-template-columns: repeat(3, calc(100% / 3));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  width: 100%;
 }
 
+.grid .screenshot {
+  cursor: pointer;
+  width: 100%;
+}
+
+.grid .screenshot:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
+}
+
+#lightbox {
+  background-color: HSLA(275, 100%, 3%, 0.8);
+  display: none;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10;
+}
+
+#lightbox.active {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#lightbox .project-window {
+  background-color: white;
+  height: 90vh;
+  overflow: scroll;
+  padding: 6vh 6vw;
+  width: clamp(320px, 50vw, 50vw);
+}
+
+#lightbox .project-window img {
+  border: 1px solid lightgray;
+  margin: auto;
+  width: 100%;
+}
+
+#lightbox .project-window p:first-of-type {
+  margin-top: 2rem;
+}
+
+.contact {
+  background-color: HSL(203, 43%, 33%);
+  color: HSL(48, 88%, 98%);
+}
+
+.contact form {
+  display: -ms-grid;
+  display: grid;
+  margin: 2.5rem auto;
+  width: 60%;
+}
+
+.contact form input, .contact form textarea {
+  background-color: HSL(203, 88%, 96%);
+  color: HSL(275, 100%, 3%);
+  font-family: Hahmlet, Garamond, serif;
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+}
+
+.contact form input:user-invalid, .contact form input .placeholderRed, .contact form textarea:user-invalid, .contact form textarea .placeholderRed {
+  border: 1px solid orangered;
+}
+
+footer {
+  background-color: HSL(275, 100%, 3%);
+  color: HSL(48, 88%, 98%);
+  text-align: center;
+}
 /*# sourceMappingURL=styles.css.map */

@@ -7,7 +7,8 @@
   <title>Sam Alefsen's Portfolio</title>
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/animations.css">
+  <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script defer src="scripts/scripts.js" type="module"></script>
 </head>
 <body>
   <header>
@@ -25,7 +26,7 @@
       <hr>
       <p>Sam has been coding and building websites since he was in high school. A graduate of Emory University with a BA in Fiction Writing, he went on to work as a marketer and web developer for 6 years. He is currently looking for employment and spends time boosting his skills with Codecademy and YouTube. See the 'Projects' section for some of his latest work.</p>
       
-      <p>In addition to his website work, Sam plays three instruments and produces audio. He is also fond of music festivals, video games, and microbreweries.</p>
+      <p>In addition to his website work, Sam plays three instruments and produces audio. He enjoys reading philosophy, playing video games, and visiting microbreweries.</p>
     </div>
   </section>
   <section class="projects">
@@ -33,7 +34,29 @@
     <a id="projects"></a>
     <h2>Projects</h2>
     <hr>
+    <div class="grid">
+      <img class="screenshot" src="./assets/images/ravenous.png" alt="Ravenous" />
+      <img class="screenshot" src="./assets/images/thillen-education-foundation.png" alt="Thillen Education Foundation" />
+      <img class="screenshot" src="./assets/images/emory-alumni-association.png" alt="Emory Alumni Association" />
+    </div>
     </div>
   </section>
+  <section class="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <hr />
+      <form id="contactForm" method="POST" action="scripts/test.php">
+        <input type="text" name="name" id="contactName" placeholder="Enter your name" required /><br />
+        <input type="email" name="email" id="contactEmail" placeholder="Enter your email address" required /><br />
+        <textarea name="message" id="contactMessage" placeholder="Message" rows="4" required></textarea><br />
+        <input type="submit" name="" id="contactSubmit" class="button blue"  value="SEND MESSAGE" />
+      </form>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <p>Copyright © Sam Alefsen 2021</p>
+    </div>
+  </footer>
 </body>
 </html>

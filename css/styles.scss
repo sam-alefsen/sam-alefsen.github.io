@@ -1,4 +1,9 @@
 @font-face {
+  font-family: 'Hahmlet';
+  src: url('../assets/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf');
+}
+
+@font-face {
   font-family: 'Source Code Pro';
   src: url('../assets/fonts/SourceCodePro_FontsOnly-1.009/SourceCodePro-Regular.ttf');
   font-weight:400;
@@ -16,17 +21,27 @@
   font-weight:300;
 }
 
+
 //variables
-$source-code-pro:'Source Code Pro';
+$source-code-pro:'Source Code Pro', monospace;
+$hahmlet: Hahmlet, Garamond, serif;
 
 //colors taken from colors.co
+$alice-blue: HSL(203, 88%, 96%);
+$blue-sapphire: HSL(203, 43%, 33%);
 $floral-white:HSL(48, 88%, 98%);
 $prussian-blue:HSL(203, 100%, 16%);
+$shadow:HSLA(275, 100%, 3%, 0.8);
 $xiketic:HSL(275, 100%, 3%);
 
 html {
   overflow-x: hidden;
   overscroll-behavior: none;
+  -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar in Firefox */
+  &::-webkit-scrollbar { /* Hide scrollbar in Chrome, Safari and Opera */
+    display: none;
+  }
 }
 body {
   background-color:$xiketic;
@@ -37,9 +52,23 @@ h2 {
     size: 4rem;
     weight: 400;
   }
-  line-height:8rem;
+  line-height:5rem;
+  margin: 2.5rem auto;
   text-align: center;
 }
+
+h3 {
+  font : {
+    family: $source-code-pro;
+    size: clamp(0px, 3rem, 6.2vw);
+    weight: 400;
+  }
+  line-height: clamp(0px, 4.5rem, 8.5vw);
+  margin: 2.5rem;
+  text-align: center;
+}
+
+
 /* Glyph, by Harry Roberts */
 
 hr {
@@ -62,19 +91,40 @@ hr {
 }
 
 p {
-  font-size: 1.2rem;
+  font-family: $hahmlet;
+  font-size: 1.1rem;
   line-height:1.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.6rem;
 }
+
+.button {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font : {
+    family: $hahmlet;
+    size: 1.3rem;
+  }
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  &.blue {
+    background-color: $prussian-blue;
+    color: $floral-white;
+  }
+  &:hover {
+    background-color: HSL(203, 100%, 20%);
+  }
+}
+
 header {
   h1 {
-    background: $xiketic 0.5;
     color:$floral-white;
     font-size: clamp(0px, 29vh, 29vw);
     font-family: $source-code-pro;
     font-weight:300;
     padding: 5vh 6vw;
-    text-shadow: -1px 2px 4px $xiketic;
+    text-shadow: -1px 2px 6px $shadow;
   }
   .headshot {
     height: clamp(0px, 90vh, 90vw);
@@ -86,19 +136,89 @@ header {
     z-index: -1;
   }
 }
+.container {
+  background-color: inherit;
+  margin: 0 auto;
+  padding: 6vh 6vw;
+  width: 70%;
+}
 .about {
   background-color:$prussian-blue;
-  box-shadow: 0px -1px 6px HSLA(0, 0%, 0%, 0.8);
+  box-shadow: 0px -1px 6px $shadow;
   color:$floral-white;
 }
 .projects {
   background-color:$floral-white;
   color:$xiketic;
 }
+.grid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, calc(100% / 3));
+  justify-content: center;
+  justify-items:center;
+  width: 100%;
+  .screenshot {
+    cursor: pointer;
+    width: 100%;
+    &:hover {
+      filter: brightness(0.7);
+    }
+  }
+}
 
-.container {
-  background-color: inherit;
-  margin: 0 auto;
-  padding: 6vh 6vw;
-  width: 70%;
+#lightbox {
+  background-color: $shadow;
+  display:none;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10;
+  &.active {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .project-window {
+    background-color: white;
+    height: 90vh;
+    overflow: scroll;
+    padding: 6vh 6vw;
+    width: clamp(320px, 50vw, 50vw);
+    img {
+      border: 1px solid lightgray;
+      margin:auto;
+      width: 100%;
+    }
+    p:first-of-type {
+      margin-top: 2rem;
+    }
+  }
+}
+.contact {
+  background-color: $blue-sapphire;
+  color: $floral-white;
+  form {
+    display: grid;
+    margin: 2.5rem auto;
+    width: 60%;
+    input, textarea {
+      background-color: $alice-blue;
+      color: $xiketic;
+      font-family: $hahmlet;
+      font-size: 1.1rem;
+      line-height:1.6rem;
+      &:user-invalid, .placeholderRed {
+        border: 1px solid orangered;
+      }
+    }
+  }
+}
+
+footer {  
+  background-color: $xiketic;
+  color: $floral-white;
+  text-align: center;
 }
