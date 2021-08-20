@@ -87,6 +87,11 @@ p {
   margin-bottom: 1.6rem;
 }
 
+p a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .button {
   border: none;
   cursor: pointer;
@@ -237,5 +242,9 @@ footer {
   background-color: HSL(275, 100%, 3%);
   color: HSL(48, 88%, 98%);
   text-align: center;
+}
+
+footer p {
+  margin: 0;
 }
 /*# sourceMappingURL=styles.css.map */
